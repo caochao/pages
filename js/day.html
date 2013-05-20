@@ -1,0 +1,32 @@
+<script type = "text/javascript">
+	function getRemainDays(targetDate)
+	{
+		var now = new Date();
+		var remains = calcDays(now,targetDate);
+		return remains;
+	}
+
+	function calcDays(start,end)
+	{
+		var diffDay = end.getDate() - start.getDate();
+		var diffMonth = end.getMonth() - start.getMonth();
+		for(var i = 1; i <= diffMonth; i++)
+		{
+			diffDay += getDaysInMonth(start.getFullYear(),start.getMonth()+i)
+		}
+		return diffDay+1;
+	}
+
+	function getDaysInMonth(year,month)
+	{
+		//new Date(y,m+1,0)表示第m月最后一天,而不是第m+1月第0天
+		var last = new Date(year,month,0);
+		var days = last.getDate();
+		console.log(month+"月有"+ days +"天");
+		return days;
+	}
+
+	var result = getRemainDays(new Date(2013,8-1,13));
+	console.log(result);
+	document.write("reamin days:" + result);
+</script>
